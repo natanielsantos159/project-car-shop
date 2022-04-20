@@ -12,7 +12,7 @@ abstract class MongoModel<T> implements Model<T> {
     this.model.findOne({ _id: id });
 
   update = async (str: string, obj: T): Promise<T | null> => {
-    const res = await this.model.updateOne({ _id: str, obj });
+    const res = await this.model.updateOne({ _id: str }, { obj });
     return res.modifiedCount ? obj : null;
   };
 

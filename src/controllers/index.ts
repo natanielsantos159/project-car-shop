@@ -21,12 +21,20 @@ abstract class Controller<T> {
 
   protected errors = ControllerErrors;
 
-  constructor(public service: Service<T>) {}
+  constructor(public service: Service<T>) { }
 
   abstract create(
     req: RequestWithBody<T>,
     res: Response<T | ResponseError>,
   ): Promise<typeof res>;
+
+  read = async (
+    _req: RequestWithBody<T>,
+    res: Response<T[] | ResponseError>,
+  ): Promise<typeof res> => {
+    const response = await this.service.read();
+    return res.status(200).json(response);
+  };
 }
 
 export default Controller;
