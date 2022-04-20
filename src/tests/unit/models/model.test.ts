@@ -2,24 +2,9 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import 'mocha';
 import CarModel from '../../../models/CarModel';
-import { Car } from '../../../interfaces/CarInterface';
+import { carInfo, carDocumentMock } from '../../utils/CarMock';
 
 describe('CarModel', () => {
-
-  const carInfo: Car = {
-    doorsQty: 2,
-    seatsQty: 2,
-    model: "Modelo",
-    year: 2000,
-    color: "red",
-    status: true,
-    buyValue: 10000,
-  };
-
-  const carDocumentMock = {
-    "_id": "12345678",
-    ...carInfo,
-  }
 
   const carModel = new CarModel();
 
