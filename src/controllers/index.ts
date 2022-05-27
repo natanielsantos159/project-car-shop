@@ -35,6 +35,11 @@ abstract class Controller<T> {
     const response = await this.service.read();
     return res.status(200).json(response);
   };
+
+  abstract delete(
+    req: RequestWithBody<T>,
+    res: Response<T | ResponseError>,
+  ): Promise<typeof res>;
 }
 
 export default Controller;

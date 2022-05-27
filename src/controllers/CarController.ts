@@ -26,4 +26,15 @@ export default class CarController extends Controller<Car> {
 
     return res.status(201).json(response);
   };
+
+  delete = async (req: Request, res: Response): Promise<Response> => {
+    console.log(req.params.id)
+    const response = await this.service.delete(req.params.id);
+    
+    if (response && (response as ServiceError).error) {
+      return res.status(400).json((response as ServiceError).error);
+    }
+
+    return res.status(204);
+  };
 }
