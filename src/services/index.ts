@@ -2,7 +2,7 @@ import { ZodError } from 'zod';
 import { Model } from '../interfaces/ModelInterface';
 
 export interface ServiceError {
-  error: ZodError;
+  error: ZodError | string;
 }
 
 abstract class Service<T> {
@@ -19,6 +19,8 @@ abstract class Service<T> {
   public async readOne(id: string): Promise<T | null | ServiceError> {
     return this.model.readOne(id);
   }
+
+  abstract delete(id: string): Promise<ServiceError | null>; 
 }
 
 export default Service;
